@@ -1,0 +1,16 @@
+right_format = "$username$time"
+
+[line_break]
+disabled = true
+
+[git_metrics]
+disabled = false
+
+[status]
+disabled = false
+
+[username]
+show_always = true
+
+[time]
+disabled = false
