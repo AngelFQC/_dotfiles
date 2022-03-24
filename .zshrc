@@ -10,8 +10,20 @@ function cdw {
     cd "$dir_www/$dir_to_move"
 }
 
-alias gs="git status"
-alias gd="git diff"
+# git
+
+alias gst='git status'
+alias gco='git checkout $1'
+alias gcom='git checkout master'
+alias glgg='git log --graph --oneline'
+
+function gdv() {
+    if [ -z "$1" ]; then
+       git diff | vim -
+   else
+       git diff "$1" | vim -
+   fi 
+}
 
 function gc {
     if [ -z "$1" ]; then
@@ -20,6 +32,8 @@ function gc {
         git commit -m "$1"
     fi
 }
+
+# end git
 
 _reverse_search() {
     local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
