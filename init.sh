@@ -16,8 +16,8 @@ curl -sS https://starship.rs/install.sh | sh
 
 curl -sL https://raw.githubusercontent.com/dracula/zsh-syntax-highlighting/master/zsh-syntax-highlighting.sh > "$HOME/.dracula-zsh-syntax-highlighting.sh"
 
-ln -s "$current_dir/.zshrc" "$HOME/.zshrc"
-ln -s "$current_dir/.bashrc" "$HOME/.bashrc"
+ln -s "$current_dir/zshrc" "$HOME/.zshrc"
+ln -s "$current_dir/bashrc" "$HOME/.bashrc"
 ln -s "$current_dir/starship.toml" "$HOME/.config/starship.toml"
 
 ### Install terminator
