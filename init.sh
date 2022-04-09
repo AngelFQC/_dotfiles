@@ -20,3 +20,17 @@ ln -s "$current_dir/.zshrc" "$HOME/.zshrc"
 ln -s "$current_dir/.bashrc" "$HOME/.bashrc"
 ln -s "$current_dir/starship.toml" "$HOME/.config/starship.toml"
 
+### Install terminator
+
+printf "\n${RED}Installing terminator${NC}\n"
+
+sudo apt install -y terminator
+
+git clone https://github.com/dracula/terminator.git terminator-dracula
+cd terminator-dracula
+./install.sh
+cd $current_dir
+rm -rf terminator-dracula
+
+ln -s "$current_dir/terminator/config" "$HOME/.config/terminator/config"
+
