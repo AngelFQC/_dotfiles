@@ -44,30 +44,24 @@ _reverse_search() {
 zle     -N      _reverse_search
 bindkey '^r'    _reverse_search
 
-# prompt
+source ~/.dracula-zsh-syntax-highlighting.sh
 
-function prompt_exit_code() {
-    local EXIT="$?"
+source ~/.zplug/init.zsh
 
-    if [ $EXIT -eq 0 ]; then
-        echo -n green
-    else
-        echo -n red
+zplug "dracula/zsh", as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
     fi
-}
+fi
 
-function git_prompt_info() {
-    inside_git_repo="$(git rev-parse --is-inside-work-tree 2> /dev/null)"
-
-    if [ "$inside_git_repo" ]; then
-        current_branch=$(git branch --show-current)
-        print -P " on %{%F{yellow}%}$current_branch%{%f%}"
-    else
-        echo ""
-    fi
-}
-
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Then, source plugins and add commands to $PATH
+zplug load
 
 eval "$(starship init zsh)"
+
